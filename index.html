@@ -3,39 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강점·난점 설문지 (청소년 자기보고용)</title>
+    <title>청소년 마음건강 & 도박문제 자가점검 캠페인</title>
     <style>
         /* ▼▼▼ 컴팩트 모던 스타일 (줄간격 1.3) + 보라색 테마 적용 ▼▼▼ */
         body { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background-color: #f0f2f5; margin: 0; padding: 15px; line-height: 1.3; }
         
         .container { max-width: 800px; margin: 0 auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         
-        .status-bar { position: fixed; top: 0; left: 0; width: 100%; padding: 8px; text-align: center; color: white; font-weight: bold; z-index: 999; font-size: 0.85em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .online { background-color: #8e44ad; } .offline { background-color: #95a5a6; }
-        
-        h1 { text-align: center; color: #8e44ad; margin-top: 10px; margin-bottom: 10px; font-size: 1.6em; letter-spacing: -1px; }
+        /* 캠페인 안내 배너 스타일 */
+        .campaign-banner { background: linear-gradient(135deg, #8e44ad, #9b59b6); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; box-shadow: 0 4px 10px rgba(142, 68, 173, 0.2); }
+        .campaign-banner h2 { margin: 0 0 10px 0; font-size: 1.4em; font-weight: 800; letter-spacing: -0.5px; }
+        .campaign-banner p { margin: 0; font-size: 0.95em; line-height: 1.5; opacity: 0.9; }
+
+        h1 { text-align: center; color: #8e44ad; margin-top: 10px; margin-bottom: 10px; font-size: 1.4em; letter-spacing: -1px; }
         
         /* 안내 문구 박스 */
-        .instruction-box {
-            background-color: #f8f9fa;
-            border-left: 5px solid #8e44ad; /* 보라색 포인트 */
-            border-radius: 4px;
-            padding: 15px;
-            margin: 15px 0;
-            color: #444;
-            font-size: 0.95em;
-            line-height: 1.5;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
+        .instruction-box { background-color: #f8f9fa; border-left: 5px solid #8e44ad; border-radius: 4px; padding: 15px; margin: 15px 0; color: #444; font-size: 0.95em; line-height: 1.5; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
         .instruction-box strong { color: #8e44ad; font-weight: 700; background: rgba(142, 68, 173, 0.05); padding: 0 4px; border-radius: 3px;}
 
-        .privacy-box {
-            border: 1px solid #eee;
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+        .privacy-box { border: 1px solid #eee; background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
 
         .input-group { margin-bottom: 10px; }
         .input-group label { display: block; margin-bottom: 4px; font-weight: 600; color: #34495e; font-size: 0.9em; }
@@ -47,32 +33,34 @@
         .gender-group label { flex: 1; padding: 8px; background: #f1f2f6; text-align: center; border-radius: 6px; cursor: pointer; border: 1px solid #dfe6e9; color: #636e72; font-weight: 600; font-size: 0.9em; }
         .gender-group input:checked + label { background: #8e44ad; color: white; border-color: #8e44ad; }
         
-        .section-title { font-size: 1.1em; font-weight: bold; color: #8e44ad; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 25px; margin-bottom: 10px; }
+        .section-title { font-size: 1.2em; font-weight: bold; color: #8e44ad; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 35px; margin-bottom: 15px; }
 
-        .question-box { margin-bottom: 10px; padding: 15px; background: #fff; border: 1px solid #eee; border-radius: 8px; }
+        .question-box { margin-bottom: 12px; padding: 15px; background: #fff; border: 1px solid #eee; border-radius: 8px; }
         .q-text { font-size: 1.05em; font-weight: bold; margin-bottom: 8px; line-height: 1.3; color: #2d3436; }
         
-        .options { display: flex; gap: 6px; }
-        .options label { flex: 1; padding: 10px; background: #f8f9fa; border: 1px solid #dfe6e9; border-radius: 6px; text-align: center; cursor: pointer; font-size: 0.95em; color: #636e72; }
+        .options { display: flex; gap: 6px; flex-wrap: wrap; }
+        .options label { flex: 1; padding: 10px 5px; background: #f8f9fa; border: 1px solid #dfe6e9; border-radius: 6px; text-align: center; cursor: pointer; font-size: 0.9em; color: #636e72; word-break: keep-all; }
         .options input:checked + label { background-color: #9b59b6; color: white; border-color: #9b59b6; font-weight: bold; }
         .options input { display: none; }
         
-        .btn-submit { width: 100%; padding: 15px; background: #8e44ad; color: white; border: none; border-radius: 10px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .btn-submit { width: 100%; padding: 15px; background: #8e44ad; color: white; border: none; border-radius: 10px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 30px; }
         .hidden { display: none; }
+
+        /* 결과 페이지용 스타일 */
+        .result-card { background:#fff; border:2px solid #ecf0f1; border-radius:15px; padding:20px; margin: 15px 0; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
+        .result-title { font-size: 1.1em; font-weight: bold; color: #34495e; margin-bottom: 10px; }
+        .result-score { font-size:2em; font-weight:800; color:#2c3e50; margin-bottom:10px; }
+        .result-risk { font-size:1.3em; font-weight:bold; }
     </style>
 </head>
 <body>
-<div id="statusBar" class="status-bar online">🟢 온라인 (서버 연결됨)</div>
 
 <div class="container" id="surveyPage">
-    <h1>🧩 강점·난점 (청소년 본인용)</h1>
-    
-    <div class="instruction-box">
-        각 문항을 읽고 <strong>‘전혀 아니다’ ‘다소 그렇다’ ‘분명히 그렇다’</strong>의 해당하는 답변에 체크하십시오.<br>
-        확신이 서지 않거나 문항의 내용이 어리석게 보이더라도 빠짐없이 대답해주시면 도움이 되겠습니다.<br>
-        <strong>지난 6개월 동안</strong> 당신이 어떻게 지내 왔는지에 근거해서 답해 주십시오.
+    <div class="campaign-banner">
+        <h2>✨ 2026 청소년 마음건강 캠페인 '내맘네맘'✨</h2>
+        <p>나의 마음 상태를 알아보고, 더 건강한 내일을 준비해 보세요!<br>추첨을 통해 기프티콘을 발송해 드립니다.<br>검사는 약 3~5분 정도 소요됩니다.</p>
     </div>
-    
+
     <div class="privacy-box">
         <h3 style="margin-top:0; color:#2c3e50; font-size:1em; margin-bottom: 8px;">🔒 개인정보 수집 및 이용 동의</h3>
         <div style="height:60px; overflow-y:scroll; background:#f9f9f9; padding:8px; border:1px solid #eee; font-size:0.8em; color:#555; margin-bottom:10px; text-align:left; line-height:1.4;">
@@ -87,7 +75,7 @@
         </label>
     </div>
 
-    <div class="section-title">🧑 본인 정보</div>
+    <div class="section-title" style="margin-top:0;">🧑 본인 정보</div>
     <div class="input-group"><label>학생 성함</label><input type="text" id="userName" placeholder="이름을 입력하세요"></div>
     <div class="input-group">
         <label>성별</label>
@@ -102,70 +90,50 @@
     </div>
     <div class="input-group"><label>연락처</label><input type="text" id="userContact" placeholder="010-1234-5678"></div>
     
-    <hr style="margin: 25px 0; border: 0; border-top: 1px dashed #ddd;">
-    
-    <div id="questionsList"></div>
-    <button class="btn-submit" onclick="submitSurvey()">검사 완료 및 제출</button>
+    <div class="section-title">🧩 첫 번째: 강점·난점 검사</div>
+    <div class="instruction-box">
+        각 문항을 읽고 <strong>‘전혀 아니다’ ‘다소 그렇다’ ‘분명히 그렇다’</strong>의 해당하는 답변에 체크하십시오.<br>
+        <strong>지난 6개월 동안</strong> 당신이 어떻게 지내 왔는지에 근거해서 답해 주십시오.
+    </div>
+    <div id="sdqQuestionsList"></div>
+
+    <div class="section-title">🎲 두 번째: 청소년 도박문제 자가점검(CAGI)</div>
+    <div class="instruction-box">
+        <strong>지난 3개월 동안</strong> 자신이 이런 경험을 겪었는지, 겪었다면 얼마나 자주 겪었는지 해당하는 곳에 체크해 주십시오.<br>
+        <span style="font-size:0.9em; color:#7f8c8d;">※ '돈내기 게임'이란 돈이나 그만한 가치가 있는 물건(쿠폰, 아이템 등)을 걸고 하는 모든 게임(카드, 스포츠 내기, 뽑기 등)을 의미합니다.</span>
+    </div>
+    <div id="cagiQuestionsList"></div>
+
+    <button class="btn-submit" onclick="submitSurvey()">모든 검사 완료 및 제출</button>
 </div>
 
 <div class="container hidden" id="completePage" style="text-align: center; padding: 40px 20px;">
     <h2 style="color: #8e44ad; margin-bottom: 20px; font-size:1.8em;">검사가 완료되었습니다.</h2>
-    <div style="background:#fff; border:2px solid #ecf0f1; border-radius:15px; padding:25px; margin: 20px 0; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.05);">
-        <p style="font-size:1em; color:#7f8c8d; margin:5px 0;">나의 난점 총점</p>
-        <div style="font-size:2.5em; font-weight:800; color:#2c3e50; margin-bottom:10px;">
-            <span id="resScore">0</span>점
-        </div>
-        <hr style="border:0; border-top:1px dashed #bdc3c7; margin:15px 0;">
-        <p style="font-size:1em; color:#7f8c8d; margin:5px 0;">판정 결과</p>
-        <div id="resRisk" style="font-size:1.5em; font-weight:bold; color:#e74c3c;">
-            판정중...
-        </div>
+    
+    <div class="result-card">
+        <div class="result-title">🧩 강점·난점 검사 결과</div>
+        <div class="result-score"><span id="resSdqScore">0</span>점</div>
+        <div class="result-risk" id="resSdqRisk">판정중...</div>
     </div>
-    <p id="msg" style="color:#95a5a6; font-size:0.9em; margin-top:20px;">데이터 저장 중...</p>
-    <button onclick="location.reload()" style="width:100%; padding:15px; background:#8e44ad; color:white; border:none; border-radius:10px; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:25px;">
-        다음 분 검사하기 (새로고침)
-    </button>
-</div>
 
-<div class="container" style="margin-top:20px; text-align:center; background:#ecf0f1; padding:15px;">
-    <p style="margin-bottom:8px; color:#7f8c8d; font-size: 0.9em;">미전송 데이터: <span id="pendingCount" style="font-weight:bold; color:#e74c3c;">0</span>건</p>
-    <button onclick="syncData()" style="padding:8px 15px; background:#8e44ad; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; font-size: 0.9em;">☁️ 서버로 보내기</button>
-</div>
-
-<div style="margin-top:30px; text-align:center; color:#ccc; font-size:0.8em; padding-bottom:30px;">
-    현재 지정된 사업명: <span id="currentProject" style="font-weight:bold; color:#2c3e50; font-size:1.1em;">미설정</span>
-    <button onclick="openModal()" style="margin-left:10px; padding:4px 8px; border:1px solid #ccc; background:#fff; cursor:pointer; border-radius:5px;">⚙️ 사업변경</button>
-</div>
-
-<div id="projectModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
-    <div style="background:white; padding:25px; border-radius:15px; width:90%; max-width:400px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
-        <h3 style="margin-top:0; color:#2c3e50;">사업명 선택</h3>
-        <p style="color:#7f8c8d; font-size:0.9em; margin-bottom:15px;">이 태블릿에서 진행할 사업을 선택하세요.</p>
-        <select id="projSelect" onchange="checkCustom()" style="width:100%; padding:10px; font-size:15px; margin-bottom:15px; border-radius:8px; border:1px solid #ddd;">
-            <option value="아동청소년">🧸 아동청소년</option>
-            <option value="마음안심버스">🚌 마음안심버스</option>
-            <option value="일반검사">📋 일반검사 (센터내소)</option>
-            <option value="마음신호등">🚦 마음신호등</option>
-            <option value="청년생애주기별">🌱 청년생애주기별</option>
-            <option value="전수조사">🔎 전수조사</option>
-            <option value="스트레스교육">🧘 스트레스교육</option>
-            <option value="custom">✏️ 기타 (직접입력)</option>
-        </select>
-        <input type="text" id="customInput" placeholder="사업명을 직접 입력하세요" style="display:none; width:100%; padding:10px; font-size:15px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;">
-        <div style="display:flex; gap:10px; margin-top:10px;">
-            <button onclick="closeModal()" style="flex:1; padding:10px; background:#95a5a6; color:white; border:none; border-radius:8px; cursor:pointer;">취소</button>
-            <button onclick="saveModal()" style="flex:1; padding:10px; background:#8e44ad; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">저장</button>
-        </div>
+    <div class="result-card">
+        <div class="result-title">🎲 청소년 도박문제 자가점검 결과</div>
+        <div class="result-score"><span id="resCagiScore">0</span>점</div>
+        <div class="result-risk" id="resCagiRisk">판정중...</div>
     </div>
+
+    <p id="msg" style="color:#2c3e50; font-size:1.1em; font-weight:bold; margin-top:20px;">데이터를 안전하게 전송 중입니다...</p>
 </div>
 
 <script>
-    // ▼▼▼ URL 확인 ▼▼▼
+    // ▼▼▼ 캠페인 기본 설정 ▼▼▼
+    const CAMPAIGN_NAME = "QR 청소년 캠페인"; 
     const SCRIPT_URL = "https://script.google.com/a/macros/jcmind.or.kr/s/AKfycbx2C1GqFTdBbknA_hYs3fV6urLSJfYXP0HbLY8_r41Ka4koH4mfjW9unIMy5Amwd3ew1w/exec";
-    // ▲▲▲▲▲▲▲▲▲▲▲▲▲
-
-    // [청소년 자기보고용] 문항 (선생님 원본 유지)
-    const questions = [
+    
+    // ==========================================
+    // 1. 강점·난점 검사 (SDQ) 문항 설정
+    // ==========================================
+    const sdqQuestions = [
         "나는 다른 사람들에게 잘 하려고 노력한다. 나는 그들의 강점을 배려한다.", 
         "나는 안절부절 못 하고, 오랫동안 가만히 있지 못한다.", 
         "나는 자주 머리나 배가 아프거나 몸이 아프다.", 
@@ -193,25 +161,63 @@
         "나는 내가 하는 일을 끝까지 마친다. 나는 주의력이 좋다."
     ];
 
-    // [채점] 역채점: 7, 11, 14, 21, 25번
-    const reverseIdx = [6, 10, 13, 20, 24];
-    const optsNormal = [{t:"전혀 아니다", v:0}, {t:"다소 그렇다", v:1}, {t:"분명히 그렇다", v:2}];
-    const optsReverse = [{t:"전혀 아니다", v:2}, {t:"다소 그렇다", v:1}, {t:"분명히 그렇다", v:0}];
+    const sdqReverseIdx = [6, 10, 13, 20, 24];
+    const sdqOptsNormal = [{t:"전혀 아니다", v:0}, {t:"다소 그렇다", v:1}, {t:"분명히 그렇다", v:2}];
+    const sdqOptsReverse = [{t:"전혀 아니다", v:2}, {t:"다소 그렇다", v:1}, {t:"분명히 그렇다", v:0}];
 
-    window.onload = function() { render(); checkNet(); updateCnt(); loadProject(); window.addEventListener('online', checkNet); window.addEventListener('offline', checkNet); };
+    // ==========================================
+    // 2. 청소년 도박문제 자가점검 (CAGI) 문항 설정
+    // ==========================================
+    const cagiQuestions1 = [
+        "돈내기 게임 때문에 단체 활동이나 연습에 빠진 적이 있나요?",
+        "돈내기 게임을 같이 하는 친구들과 어울리느라 다른 친구들과의 약속을 어긴 적이 있나요?",
+        "돈내기 게임을 위해 계획을 세운 적이 있나요?",
+        "돈내기 게임 때문에 기분이 나빴던 적이 있나요?",
+        "전에 잃은 돈을 되찾기 위해 다시 돈내기 게임을 한 적이 있나요?",
+        "돈내기 게임 하는 것을 부모나 가족 또는 선생님에게 숨긴 적이 있나요?",
+        "돈내기 게임으로 인해 내게 문제가 생겼다고 느낀 적이 있나요?"
+    ]; // 보기 1
+    const cagiQuestions2 = [
+        "밥이나 옷, 영화표 구입 등에 써야 할 용돈을 돈내기 게임에 쓴 적이 있나요?",
+        "돈내기 게임을 위해 남의 돈이나 돈이 될 만한 물건을 몰래 가져온 적이 있나요?"
+    ]; // 보기 2
+
+    const cagiOpts1 = [{t:"없음", v:0}, {t:"가끔", v:1}, {t:"자주", v:2}, {t:"거의 항상", v:3}];
+    const cagiOpts2 = [{t:"없음", v:0}, {t:"1~3회", v:1}, {t:"4~6회", v:2}, {t:"7회 이상", v:3}];
+
+    // 화면 렌더링
+    window.onload = function() { 
+        renderSDQ(); 
+        renderCAGI();
+    };
     
-    function render() {
-        const list = document.getElementById("questionsList");
-        questions.forEach((q,i) => {
-            const currentOpts = reverseIdx.includes(i) ? optsReverse : optsNormal;
+    function renderSDQ() {
+        const list = document.getElementById("sdqQuestionsList");
+        sdqQuestions.forEach((q, i) => {
+            const currentOpts = sdqReverseIdx.includes(i) ? sdqOptsReverse : sdqOptsNormal;
             let h = `<div class="question-box"><div class="q-text">${i+1}. ${q}</div><div class="options">`;
-            currentOpts.forEach(c => h+=`<input type="radio" name="q${i}" id="q${i}_${c.v}" value="${c.v}"><label for="q${i}_${c.v}">${c.t}</label>`);
+            currentOpts.forEach(c => h+=`<input type="radio" name="sdq${i}" id="sdq${i}_${c.v}" value="${c.v}"><label for="sdq${i}_${c.v}">${c.t}</label>`);
             list.innerHTML += h + `</div></div>`;
         });
     }
 
-    function checkNet() { document.getElementById("statusBar").className = navigator.onLine ? "status-bar online" : "status-bar offline"; document.getElementById("statusBar").innerText = navigator.onLine ? "🟢 온라인" : "🔴 오프라인"; }
-    
+    function renderCAGI() {
+        const list = document.getElementById("cagiQuestionsList");
+        // 1~7번 문항
+        cagiQuestions1.forEach((q, i) => {
+            let h = `<div class="question-box"><div class="q-text">${i+1}. ${q}</div><div class="options">`;
+            cagiOpts1.forEach(c => h+=`<input type="radio" name="cagi${i}" id="cagi${i}_${c.v}" value="${c.v}"><label for="cagi${i}_${c.v}">${c.t}</label>`);
+            list.innerHTML += h + `</div></div>`;
+        });
+        // 8~9번 문항
+        cagiQuestions2.forEach((q, i) => {
+            let realIdx = i + 7;
+            let h = `<div class="question-box"><div class="q-text">${realIdx+1}. ${q}</div><div class="options">`;
+            cagiOpts2.forEach(c => h+=`<input type="radio" name="cagi${realIdx}" id="cagi${realIdx}_${c.v}" value="${c.v}"><label for="cagi${realIdx}_${c.v}">${c.t}</label>`);
+            list.innerHTML += h + `</div></div>`;
+        });
+    }
+
     function calcAge(birth6) {
         if(!birth6 || birth6.length !== 6) return 0;
         const today = new Date();
@@ -225,9 +231,8 @@
     function submitSurvey() {
         const agree = document.getElementById("privacyAgree");
         if (!agree || !agree.checked) {
-            alert("개인정보 수집 및 이용에 동의해주셔야 검사가 가능합니다.\n(상단 동의란에 체크해주세요)");
+            alert("개인정보 수집 및 이용에 동의해주셔야 검사가 가능합니다.");
             agree.scrollIntoView({behavior: "smooth", block: "center"});
-            agree.focus();
             return;
         }
 
@@ -238,95 +243,80 @@
         const contact = document.getElementById("userContact").value;
         const age = calcAge(birth);
 
-        if(!name || !gender || !birth || !contact) return alert("필수 정보를 모두 입력해주세요.");
+        if(!name || !gender || !birth || !contact) return alert("본인 정보를 모두 입력해주세요.");
         if(birth.length !== 6) return alert("생년월일은 6자리로 입력해주세요.");
 
-        let total=0, details=[], all=true;
-        const prosocialIdx = [0, 3, 8, 16, 19]; // 친사회적행동 제외
-
+        // SDQ 점수 계산
+        let sdqTotal=0, sdqDetails=[];
+        const prosocialIdx = [0, 3, 8, 16, 19]; 
         for(let i=0; i<25; i++) {
-            const el = document.querySelector(`input[name="q${i}"]:checked`);
-            if(!el) { all=false; break; }
+            const el = document.querySelector(`input[name="sdq${i}"]:checked`);
+            if(!el) return alert(`강점·난점 검사(SDQ)의 ${i+1}번 문항에 답해주세요.`);
             let v = parseInt(el.value);
-            details.push(v);
-            if (!prosocialIdx.includes(i)) { total += v; }
+            sdqDetails.push(v);
+            if (!prosocialIdx.includes(i)) sdqTotal += v;
         }
-        if(!all) return alert("모든 문항에 답해주세요.");
 
-        // [자기보고용 판정 기준 - 만 11~17세]
-        // 난점 총점: 0-15(정상), 16-19(경계), 20-40(고위험)
-        // **선생님 코드 원본 유지**
-        let risk = "정상";
-        if (total >= 20) risk = "🚨 고위험군 (전문가 의뢰)";
-        else if (total >= 16) risk = "⚠️ 경계군 (상담 필요)";
+        // CAGI 점수 계산
+        let cagiTotal=0, cagiDetails=[];
+        for(let i=0; i<9; i++) {
+            const el = document.querySelector(`input[name="cagi${i}"]:checked`);
+            if(!el) return alert(`청소년 도박문제 자가점검(CAGI)의 ${i+1}번 문항에 답해주세요.`);
+            let v = parseInt(el.value);
+            cagiDetails.push(v);
+            cagiTotal += v;
+        }
 
-        const project = localStorage.getItem("survey_project") || "아동청소년";
-        
-        // type: "SDQ_SELF" (선생님 코드 유지)
-        const data = { type: "SDQ_SELF", project: project, name, gender, age, birth, contact, total, risk, detail: details, date: new Date().toLocaleString() };
-        process(data);
+        // 판정
+        let sdqRisk = "정상";
+        if (sdqTotal >= 20) sdqRisk = "🚨 고위험군 (전문가 의뢰)";
+        else if (sdqTotal >= 16) sdqRisk = "⚠️ 경계군 (상담 필요)";
+
+        let cagiRisk = "비문제군";
+        if (cagiTotal >= 6) cagiRisk = "🚨 문제군 (전문가 상담 필요)";
+        else if (cagiTotal >= 2) cagiRisk = "⚠️ 위험군 (상담 필요)";
+
+        // 데이터 페이로드 생성
+        const commonData = { project: CAMPAIGN_NAME, name, gender, age, birth, contact, date: new Date().toLocaleString() };
+        const sdqData = { ...commonData, type: "SDQ_SELF", total: sdqTotal, risk: sdqRisk, detail: sdqDetails };
+        const cagiData = { ...commonData, type: "CAGI", total: cagiTotal, risk: cagiRisk, detail: cagiDetails };
+
+        process(sdqData, cagiData);
     }
 
-    function process(data) {
+    function process(sdqData, cagiData) {
+        // UI 변경
         document.getElementById("surveyPage").classList.add("hidden"); 
         document.getElementById("completePage").classList.remove("hidden");
-        document.getElementById("resScore").innerText = data.total;
-        document.getElementById("resRisk").innerText = data.risk;
         
-        const riskBox = document.getElementById("resRisk");
-        if(data.risk.includes("정상")) riskBox.style.color = "#27ae60";
-        else riskBox.style.color = "#c0392b";
+        // SDQ 결과 표기
+        document.getElementById("resSdqScore").innerText = sdqData.total;
+        const elSdqRisk = document.getElementById("resSdqRisk");
+        elSdqRisk.innerText = sdqData.risk;
+        elSdqRisk.style.color = sdqData.risk.includes("정상") ? "#27ae60" : "#c0392b";
 
-        if(navigator.onLine && SCRIPT_URL.startsWith("http")) {
-            fetch(SCRIPT_URL, { 
-                method:"POST", mode:"no-cors", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data) 
-            })
-            .then(()=>{ document.getElementById("msg").innerText="✅ 서버 저장 완료"; })
-            .catch(()=>{ save(data); document.getElementById("msg").innerText="⚠️ 서버 전송 실패 (기기에 저장됨)"; });
-        } else { 
-            save(data); document.getElementById("msg").innerText="💾 기기 저장 완료 (오프라인)"; 
-        }
-    }
+        // CAGI 결과 표기
+        document.getElementById("resCagiScore").innerText = cagiData.total;
+        const elCagiRisk = document.getElementById("resCagiRisk");
+        elCagiRisk.innerText = cagiData.risk;
+        elCagiRisk.style.color = cagiData.risk.includes("비문제군") ? "#27ae60" : "#c0392b";
 
-    function save(data) { let d=JSON.parse(localStorage.getItem("sdq_self_pen")||"[]"); d.push(data); localStorage.setItem("sdq_self_pen", JSON.stringify(d)); updateCnt(); }
-    function updateCnt() { document.getElementById("pendingCount").innerText = JSON.parse(localStorage.getItem("sdq_self_pen")||"[]").length; }
-    async function syncData() {
-        let d=JSON.parse(localStorage.getItem("sdq_self_pen")||"[]"); if(!d.length) return alert("없음");
-        if(!navigator.onLine) return alert("인터넷 연결 필요");
-        if(!confirm("전송하시겠습니까?")) return;
-        for(const i of d) await fetch(SCRIPT_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"application/json"}, body:JSON.stringify(i)});
-        localStorage.removeItem("sdq_self_pen"); updateCnt(); alert("전송 끝");
-    }
-
-    function loadProject() {
-        const saved = localStorage.getItem("survey_project") || "아동청소년";
-        document.getElementById("currentProject").innerText = saved;
-    }
-    function openModal() {
-        document.getElementById("projectModal").style.display = "flex";
-        const saved = localStorage.getItem("survey_project") || "아동청소년";
-        const select = document.getElementById("projSelect");
-        let found = false;
-        for(let i=0; i<select.options.length; i++) {
-            if(select.options[i].value === saved) { select.selectedIndex = i; found = true; break; }
-        }
-        if(!found) { select.value = "custom"; document.getElementById("customInput").value = saved; }
-        checkCustom();
-    }
-    function closeModal() { document.getElementById("projectModal").style.display = "none"; }
-    function checkCustom() {
-        const val = document.getElementById("projSelect").value;
-        document.getElementById("customInput").style.display = (val === "custom") ? "block" : "none";
-    }
-    function saveModal() {
-        let val = document.getElementById("projSelect").value;
-        if(val === "custom") {
-            val = document.getElementById("customInput").value.trim();
-            if(!val) return alert("사업명을 입력해주세요.");
-        }
-        localStorage.setItem("survey_project", val);
-        loadProject(); closeModal();
-        alert(`[${val}] 사업으로 설정되었습니다.`);
+        // 구글 시트로 각각 데이터 전송 (병렬 처리)
+        Promise.all([
+            fetch(SCRIPT_URL, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/json"}, body:JSON.stringify(sdqData) }),
+            fetch(SCRIPT_URL, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/json"}, body:JSON.stringify(cagiData) })
+        ]).then(() => {
+            // mode:"no-cors" 이므로 응답 상태를 체크할 수 없으나, 요청이 정상적으로 보내졌다면 성공 메시지를 띄웁니다.
+            setTimeout(() => {
+                const msgEl = document.getElementById("msg");
+                msgEl.innerText = "✅ 참여가 완료되었습니다. 감사합니다!";
+                msgEl.style.color = "#27ae60";
+            }, 800);
+        }).catch(() => { 
+            const msgEl = document.getElementById("msg");
+            msgEl.innerText = "⚠️ 일시적인 네트워크 오류가 발생했을 수 있습니다."; 
+            msgEl.style.color = "#c0392b";
+        });
     }
 </script>
 </body>
